@@ -2,11 +2,13 @@
 //Add Java libraries needed for the game
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.*;
 
-public class CheeseWorld implements Runnable {
+public class CheeseWorld implements Runnable, KeyListener {
 
     //Variable Definition Section
 
@@ -42,6 +44,7 @@ public class CheeseWorld implements Runnable {
     public CheeseWorld() {
 
         setUpGraphics();
+        canvas.addKeyListener(this);
 
         //create (construct) the objects needed for the game
         jerry = new Mouse(200, 300, 0, 0);
@@ -166,4 +169,53 @@ public class CheeseWorld implements Runnable {
         }
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+
+           if(keyCode == 38){ // up
+              System.out.println("key code: " + keyCode); // prints code for number
+               // make santa move up
+              tom.ypos = tom.ypos - 5;
+            }
+            if(keyCode == 39) { // right
+                System.out.println("key code: " + keyCode);
+               tom.xpos = tom.xpos + 5;
+           }
+            if(keyCode == 37){ // left
+               System.out.println("key code: " + keyCode);
+               tom.xpos = tom.xpos - 5;
+
+           } // left
+            if(keyCode == 40){ // down
+               System.out.println("key code: " + keyCode);
+               tom.ypos = tom.ypos + 5;
+           }
+            if(keyCode == 87){
+                System.out.println("key code:" + keyCode);
+                jerry.ypos = jerry.ypos + 5;
+            }
+            if(keyCode == 65){
+                System.out.println("key code:" + keyCode);
+                jerry.xpos = jerry.xpos - 5;
+        }
+            if(keyCode == 83) {
+                System.out.println("key code:" + keyCode);
+                jerry.ypos = jerry.ypos - 5;
+        }
+            if(keyCode == 68){
+                System.out.println("key code:" + keyCode);
+                jerry.xpos = jerry.xpos + 5;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 } // end of class
